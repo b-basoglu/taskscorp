@@ -18,7 +18,7 @@
 #Structure (Implementation and decision explained in comments)
 
     MainActivity
-        Hosts fragment container and Collapsing toolbar
+        Hosts fragment container and toolbar
     
     MainBaseFragment
         Handles interaction between activity and fragment
@@ -30,13 +30,23 @@
         Makes data manupulation
     
     MainRepository
-        Api calls
+        Api calls,In this case fetch from data source
         
     ApplicationModule
-        Singleton DataSource
-    
-    Network Constants 
-        Constants related to api calls
+        Singleton provider
+
+    UserListAdapter
+        PagedListAdapter for recyclerview
+
+    DataSourceHelper that implemented by DataSourceHelperImpl
+        Has fetch method that fetches data from given DataSource.
+        Provided singleton from ApplicationModule
+
+    UserListDataSource
+        Is a PageKeyedDataSource for pagination
+
+     UserListDataSourceFactory
+        As is creates UserListDataSource and provides
     
     Also classes Response and Status implemented as clarified
     

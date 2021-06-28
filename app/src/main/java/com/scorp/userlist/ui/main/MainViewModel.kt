@@ -10,7 +10,7 @@ import com.scorp.userlist.data.DataSource
 import com.scorp.userlist.data.FetchResponse
 import com.scorp.userlist.data.Person
 import com.scorp.userlist.di.datasource.UserListDataSource
-import com.scorp.userlist.di.datasourcefactory.UserListDataSourceFactory
+import com.scorp.userlist.di.datasource.UserListDataSourceFactory
 import com.scorp.userlist.di.repository.MainRepository
 import com.scorp.userlist.di.response.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,11 +29,8 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
     //Since we have used handler to make refreshing a bit late we keep this mutablelivedata to keep track refreshing state
     var refreshing : MutableLiveData<Boolean> = MutableLiveData(false)
 
-
     private val dataSourceFactory : UserListDataSourceFactory =
-        UserListDataSourceFactory(
-            mainRepository
-        )
+        UserListDataSourceFactory(mainRepository)
     private var liveDataSource: MutableLiveData<UserListDataSource>
 
     init {

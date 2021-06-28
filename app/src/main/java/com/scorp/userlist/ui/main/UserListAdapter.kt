@@ -10,9 +10,7 @@ import com.scorp.userlist.R
 import com.scorp.userlist.data.Person
 import com.scorp.userlist.databinding.UserListItemBinding
 
-class UserListAdapter: PagedListAdapter<Person, UserListAdapter.UserViewHolder>(
-    DIFF_CALLBACK
-) {
+class UserListAdapter: PagedListAdapter<Person, UserListAdapter.UserViewHolder>( DIFF_CALLBACK ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val itemBinding: UserListItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),

@@ -1,4 +1,4 @@
-package com.scorp.userlist.di.datasourcefactory
+package com.scorp.userlist.di.datasource
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource

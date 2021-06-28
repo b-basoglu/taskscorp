@@ -46,7 +46,7 @@
         Is a PageKeyedDataSource for pagination
 
      UserListDataSourceFactory
-        As is creates UserListDataSource and provides
+        As is creates UserListDataSource
     
     Also classes Response and Status implemented as clarified
     

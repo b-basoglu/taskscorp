@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Scorp Task</string>
+    <string name="USER_LIST">User List</string>
+    <string name="RETRY">Will retry</string>
+    <string name="NO_USER">No one is here!</string>
+
+</resources>

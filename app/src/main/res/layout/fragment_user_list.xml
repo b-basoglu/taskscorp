@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.scorp.userlist.MainActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.scorp.userlist.di.response.Status" />
+
+        <variable
+            name="viewModel"
+            type="com.scorp.userlist.ui.main.MainViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <RelativeLayout
+            android:id="@+id/rl_no_data"
+            android:elevation="5dp"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/no_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="@string/NO_USER"
+                >
+            </TextView>
+            <ImageView
+                android:id="@+id/iv_refresh"
+                android:layout_centerHorizontal="true"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginTop="10dp"
+                android:background="@color/transparent"
+                android:layout_below="@+id/no_data"
+                android:src="@drawable/ic_baseline_refresh_24"
+                />
+        </RelativeLayout>
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent">
+           <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+               android:id="@+id/srl_rvlist_holder"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:swipeRefreshLayoutProgressSpinnerBackgroundColor="@color/teal_200">
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/rv_recycler"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   tools:listitem="@layout/user_list_item" />
+
+           </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+       </LinearLayout>
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/clpb_loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/orange"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="@{viewModel.userListMLD.status == Status.LOADING ? View.VISIBLE : View.GONE}"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+             />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/error_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/red_opacity_80"
+            android:visibility="@{viewModel.userListMLD.status == Status.ERROR ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+
+            <TextView
+                android:id="@+id/tv_error"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@{viewModel.userListMLD.message}"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                tools:text="Internal Server Error"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_retry"
+                />
+            <TextView
+                android:id="@+id/tv_retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/RETRY"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginEnd="20dp"
+                tools:text="@string/RETRY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/circle_progress"
+                />
+            <com.scorp.userlist.customui.CircleProgressBar
+                android:id="@+id/circle_progress"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_retry"
+                app:layout_constraintStart_toStartOf="@+id/tv_retry"
+                app:layout_constraintTop_toBottomOf="@+id/tv_retry"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

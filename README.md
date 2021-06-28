@@ -10,6 +10,8 @@
     
     Kotlin
 
+    Paging
+    
     Binding
 
 

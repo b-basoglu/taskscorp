@@ -1,4 +1,5 @@
-# Scorp Task
+# User List Application
+
 
 #Technologies and Terminologies
 
@@ -53,4 +54,4 @@
     FragmentUtils implemented for fragment transaction
 
     CirclePorgressBar is a custom ui
-# scorptask
+# userListApplication
